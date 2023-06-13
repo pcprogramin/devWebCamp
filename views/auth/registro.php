@@ -5,15 +5,21 @@
     <p class="auth__texto">
         Registrate en DevWebCam
     </p>
-
-    <form class="formulario">
+    <?php
+    require_once __DIR__ . '/../templates/alertas.php';
+    ?>
+    <form class="formulario" method="POST" action="">
         <div class="formulario__campo">
-            <label class="formulario__label" for="email">Email</label>
-            <input type="email" class="formulario__input" placeholder="Tu email" id="email">
+            <label class="formulario__label" for="nombre">Nombre</label>
+            <input type="text" class="formulario__input" placeholder="Tu nombre" id="nombre" name="nombre" value="<?php echo $usuario->nombre ?>">
         </div>
         <div class="formulario__campo">
-            <label class="formulario__label" for="password">Password</label>
-            <input type="password" class="formulario__input" placeholder="Tu Password" id="password" name="password">
+            <label class="formulario__label" for="apellido">Apellido</label>
+            <input type="text" class="formulario__input" placeholder="Tu Apellido" id="apellido" name="apellido" value="<?php echo $usuario->apellido ?>">
+        </div>
+        <div class="formulario__campo">
+            <label class="formulario__label" for="email">Email</label>
+            <input type="email" class="formulario__input" placeholder="Tu email" id="email" name="email" value="<?php echo $usuario->email ?>">
         </div>
         <div class="formulario__campo">
             <label class="formulario__label" for="password">Password</label>

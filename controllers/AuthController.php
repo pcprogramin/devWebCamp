@@ -14,11 +14,11 @@ class AuthController {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
     
             $usuario = new Usuario($_POST);
-
+      
             $alertas = $usuario->validarLogin();
             
             if(empty($alertas)) {
-                // Verificar quel el usuario exista
+
                 $usuario = Usuario::where('email', $usuario->email);
                 if(!$usuario || !$usuario->confirmado ) {
                     Usuario::setAlerta('error', 'El Usuario No Existe o no esta confirmado');
@@ -46,7 +46,8 @@ class AuthController {
         // Render a la vista 
         $router->render('auth/login', [
             'titulo' => 'Iniciar Sesión',
-            'alertas' => $alertas
+            'alertas' => $alertas,
+           
         ]);
     }
 
@@ -66,7 +67,7 @@ class AuthController {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $usuario->sincronizar($_POST);
-            
+      
             $alertas = $usuario->validar_cuenta();
 
             if(empty($alertas)) {
