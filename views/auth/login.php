@@ -5,15 +5,17 @@
     <p class="auth__texto">
         Inicia sesión en DevWebCam
     </p>
-
-    <form class="formulario">
+    <?php
+    require_once __DIR__ . '/../templates/alertas.php';
+    ?>
+    <form class="formulario" method="POST" action="/login">
         <div class="formulario__campo">
             <label class="formulario__label" for="email">Email</label>
-            <input type="email" class="formulario__input" placeholder="Tu email" id="email">
+            <input type="email" class="formulario__input" placeholder="Tu email" id="email" name="email">
         </div>
         <div class="formulario__campo">
             <label class="formulario__label" for="password">Password</label>
-            <input type="password" class="formulario__input" placeholder="Tu Password" id="password">
+            <input type="password" class="formulario__input" placeholder="Tu Password" id="password" name="password">
         </div>
 
         <input type="submit" class="formulario__submit" value="Iniciar Sesión">

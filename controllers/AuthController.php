@@ -34,6 +34,11 @@ class AuthController {
                         $_SESSION['email'] = $usuario->email;
                         $_SESSION['admin'] = $usuario->admin ?? null;
                         
+                        if($usuario->admin){
+                            header('Location: /admin/dashboard');
+                        }else{
+                            header('Location: /finalizar-registro');
+                        }
                     } else {
                         Usuario::setAlerta('error', 'Password Incorrecto');
                     }
@@ -55,7 +60,7 @@ class AuthController {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
             $_SESSION = [];
-            header('Location: /');
+            header('Location: /login');
         }
        
     }
@@ -191,7 +196,7 @@ class AuthController {
 
                 // Redireccionar
                 if($resultado) {
-                    header('Location: /');
+                    header('Location: /login');
                 }
             }
         }
@@ -216,6 +221,7 @@ class AuthController {
     public static function confirmar(Router $router) {
         
         $token = s($_GET['token']);
+        $token_valido= true;
 
         if(!$token) header('Location: /');
 
@@ -224,6 +230,7 @@ class AuthController {
 
         if(empty($usuario)) {
             // No se encontró un usuario con ese token
+            $token_valido= false;
             Usuario::setAlerta('error', 'Token No Válido');
         } else {
             // Confirmar la cuenta
@@ -241,7 +248,8 @@ class AuthController {
 
         $router->render('auth/confirmar', [
             'titulo' => 'Confirma tu cuenta DevWebcamp',
-            'alertas' => Usuario::getAlertas()
+            'alertas' => Usuario::getAlertas(),
+            'token_valido' => $token_valido
         ]);
     }
 }

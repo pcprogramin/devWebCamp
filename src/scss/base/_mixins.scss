@@ -134,3 +134,45 @@
         display: none;
     }
 }
+@mixin enlace{
+    all: unset;
+    color:v.$blanco;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: v.$bold;
+    
+    &:hover{
+        color: v.$azul;
+        cursor: pointer;
+    }
+}
+
+@mixin shadow (){
+    box-shadow: rgba($color: #000000, $alpha: .1) 0px 4px 12px ;
+}
+
+@mixin contenedor-md{
+    width: min( 95%,80rem);
+    margin: 0 auto;
+}
+@mixin reset-lista{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin tags{
+    @include reset-lista;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    > li{
+        padding: 1rem;
+        border-radius: .5rem;
+        font-size: 1.4rem;
+        font-weight: v.$bold;
+        background-color: v.$azul;
+        color: v.$blanco;
+    }
+}
