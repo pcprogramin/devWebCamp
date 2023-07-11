@@ -6,23 +6,15 @@
     </div>
     <div class="formulario__campo">
         <label class="formulario__label" for="descripcion">Descripcion Evento</label>
-        <textarea name="descripcion" placeholder="Descripcion Evento" id="descripcion" cols="30" rows="10"></textarea>
+        <textarea name="descripcion" placeholder="Descripcion Evento" id="descripcion" cols="30" rows="10"><?php echo $evento->descripcion ?? '' ?></textarea>
     </div>
     <div class="formulario__campo">
         <label class="formulario__label" for="categoria">Categorias o Tipo de Eventos</label>
-        <select class="formulario__select" id="categoria" name="categoria">
+        <select class="formulario__select" id="categoria" name="categoria_id">
             <option value="">- Seleccionar -</option>
             <?php foreach ($categorias as $categoria) { ?>
-                <option value="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre ?></option>
-            <?php } ?>
-        </select>
-    </div>
-    <div class="formulario__campo">
-        <label class="formulario__label" for="categoria">Categorias o Tipo de Eventos</label>
-        <select class="formulario__select" id="categoria" name="categoria">
-            <option value="">- Seleccionar -</option>
-            <?php foreach ($categorias as $categoria) { ?>
-                <option value="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre ?></option>
+               
+                <option <?php echo ($evento->categoria_id === $categoria->id ) ? 'selected':'' ?> value="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre ?></option>
             <?php } ?>
         </select>
     </div>
@@ -36,27 +28,37 @@
                         type="radio"
                         id="<?php strtolower($dia->nombre) ?>"
                         name="dia"
-                        value="<?php $dia->id ?>"
+                        value="<?php echo $dia->id ?>"
                     >
                 </div>
             <?php } ?>
         </div>
     </div>
+    <input type="hidden" name="dia_id" value="">
+    
     <div id="horas" class="formulario__campo">
         <label for="" class="formulario__label">Seleccionar Hora</label>
-        <ul class="horas">
+        <ul class="horas" id="horas">
             <?php 
                 foreach ($horas as $hora) {
             ?>
                 
-                <li class="horas__hora"><?php echo $hora->hora ?> </li>
+                <li class="horas__hora horas__hora--deshabilitado" data-hora-id ="<?php echo $hora->id ?>"><?php echo $hora->hora ?> </li>
             <?php
                 }
             ?>
         </ul>
+        <input type="hidden" name="hora_id" value="">
     </div>
 </fieldset>
 <fieldset class="formulario__fieldset">
-    <legend class="formulario__legen">Información Extra</legend>
-    
+    <legend class="formulario__legend">Información Extra</legend>
+    <div class="formulario__campo">
+        <label class="formulario__label" for="ponentes">Ponente</label>
+        <input type="text" class="formulario__input" id="ponentes" placeholder="Buscar Ponente" >
+    </div>
+    <div class="formulario__campo">
+        <label class="formulario__label" for="ponentes">Lugares Disponibles</label>
+        <input type="number" class="formulario__input" id="disponibles" placeholder="Ej.20" value="<?php echo $evento->disponibles ?>" name="disponibles">
+    </div>
 </fieldset>

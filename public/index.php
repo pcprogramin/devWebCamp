@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\ApiEventos;
 use Controllers\AuthController;
 use Controllers\DashboardController;
 use Controllers\EventosController;
@@ -50,6 +51,7 @@ $router->get('/admin/eventos/editar', [EventosController::class, 'editar']);
 $router->post('/admin/eventos/editar', [EventosController::class, 'editar']);
 $router->post('/admin/eventos/eliminar', [EventosController::class, 'eliminar']);
 
+$router->get ('/api/eventos-horario',[ApiEventos::class,'index']);
 
 $router->get('/admin/eventos', [EventosController::class, 'index']);
 $router->get('/admin/registrados', [RegistradosController::class, 'index']);
