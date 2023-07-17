@@ -29,12 +29,13 @@
                         id="<?php strtolower($dia->nombre) ?>"
                         name="dia"
                         value="<?php echo $dia->id ?>"
+                        <?php echo ($evento->dia_id === $dia->id ? 'checked':'');?>
                     >
                 </div>
             <?php } ?>
         </div>
     </div>
-    <input type="hidden" name="dia_id" value="">
+    <input type="hidden" name="dia_id" value="<?php echo $evento->dia_id  ?>">
     
     <div id="horas" class="formulario__campo">
         <label for="" class="formulario__label">Seleccionar Hora</label>
@@ -48,7 +49,7 @@
                 }
             ?>
         </ul>
-        <input type="hidden" name="hora_id" value="">
+        <input type="hidden" name="hora_id" value="<?php echo $evento->hora_id ?>">
     </div>
 </fieldset>
 <fieldset class="formulario__fieldset">
@@ -56,9 +57,14 @@
     <div class="formulario__campo">
         <label class="formulario__label" for="ponentes">Ponente</label>
         <input type="text" class="formulario__input" id="ponentes" placeholder="Buscar Ponente" >
+        <ul id = "listado_ponentes" class="listado-ponentes">
+
+        </ul>
+        <input type="hidden" name="ponente_id" value="<?php echo $evento->ponente_id ?>">
     </div>
     <div class="formulario__campo">
         <label class="formulario__label" for="ponentes">Lugares Disponibles</label>
         <input type="number" class="formulario__input" id="disponibles" placeholder="Ej.20" value="<?php echo $evento->disponibles ?>" name="disponibles">
+        
     </div>
 </fieldset>
