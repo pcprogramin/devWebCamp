@@ -149,8 +149,11 @@ class ActiveRecord {
         return $resultado;
     }
 
-    public static function total (){
+    public static function total ($columna='', $valor=''){
         $query = "SELECT count(*) FROM " . static::$tabla ;
+        if($columna) {
+            $query .= " WHERE  ${columna} = ${valor}";
+        }
         $resultado = self::$db->query($query);
         $total=$resultado->fetch_array(); 
         return array_shift($total);
@@ -207,7 +210,8 @@ class ActiveRecord {
         return $resultado;
     }
     public static function ordenar($columna, $orden){
-        $query = "SELECT * FROM " . static::$tabla . " ORDER BY ${columna} '${orden}'";
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY ${columna} ${orden}";
+
         $resultado = self::consultarSQL($query);
         return $resultado;
     }

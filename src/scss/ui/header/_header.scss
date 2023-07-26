@@ -9,7 +9,7 @@
     background-repeat: no-repeat;
     background-size: 400px, 400px, cover,cover;
     background-position: top left, bottom right,center center, center center;
-    
+   
     &__contenedor{
         @include m.contenedor
     }
@@ -24,6 +24,12 @@
     }
     &__enlace{
         @include m.enlace;
+    }
+    &__form{
+        display: flex
+    }
+    &__submit{
+        @extend .header__enlace;
     }
     &__contenido{
         padding-top:10rem;

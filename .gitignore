@@ -57,7 +57,7 @@ web_modules/
 # Optional stylelint cache
 .stylelintcache
 
-# Microbundle cache
+# Micromain cache
 .rpt2_cache/
 .rts2_cache_cjs/
 .rts2_cache_es/
@@ -79,7 +79,7 @@ web_modules/
 .env.production.local
 .env.local
 
-# parcel-bundler cache (https://parceljs.org/)
+# parcel-mainr cache (https://parceljs.org/)
 .cache
 .parcel-cache
 
